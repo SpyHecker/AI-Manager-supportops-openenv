@@ -1,0 +1,136 @@
+name: supportops-openenv
+version: "0.1.0"
+
+description: >
+  SupportOps-OpenEnv is a real-world customer support operations environment
+  where AI agents learn to classify, prioritize, route, request information,
+  draft responses, escalate, and resolve support tickets.
+
+entrypoint: app.server:app
+
+endpoints:
+  reset: /reset
+  step: /step
+  state: /state
+
+action_space:
+  type: object
+  properties:
+    action_type:
+      type: string
+      enum:
+        - classify_ticket
+        - set_priority
+        - assign_team
+        - request_more_info
+        - draft_response
+        - escalate_ticket
+        - resolve_ticket
+        - close_without_resolution
+    category:
+      type: string
+      nullable: true
+    priority:
+      type: string
+      nullable: true
+    team:
+      type: string
+      nullable: true
+    message:
+      type: string
+      nullable: true
+    escalation_reason:
+      type: string
+      nullable: true
+  required:
+    - action_type
+
+observation_space:
+  type: object
+  properties:
+    ticket_id:
+      type: string
+    task_id:
+      type: string
+    difficulty:
+      type: string
+    customer_message:
+      type: string
+    conversation_history:
+      type: array
+      items:
+        type: string
+    customer_tier:
+      type: string
+    product_area:
+      type: string
+    current_category:
+      type: string
+      nullable: true
+    current_priority:
+      type: string
+      nullable: true
+    assigned_team:
+      type: string
+      nullable: true
+    last_action_result:
+      type: string
+    allowed_actions:
+      type: array
+      items:
+        type: string
+    step_count:
+      type: integer
+    max_steps:
+      type: integer
+    ready_for_resolution:
+      type: boolean
+    done:
+      type: boolean
+  required:
+    - ticket_id
+    - task_id
+    - difficulty
+    - customer_message
+    - conversation_history
+    - customer_tier
+    - product_area
+    - last_action_result
+    - allowed_actions
+    - step_count
+    - max_steps
+    - ready_for_resolution
+    - done
+
+reward:
+  type: float
+  range: [-0.25, 1.0]
+  description: >
+    Step-level rewards provide partial progress signals for correct ticket
+    handling actions, while final task success is graded deterministically
+    in the [0.0, 1.0] range.
+
+tasks:
+  - name: easy
+    difficulty: easy
+    description: >
+      Customer was charged twice for a subscription and wants a refund.
+  - name: medium
+    difficulty: medium
+    description: >
+      Customer cannot receive OTP and needs urgent account access before travel.
+  - name: hard
+    difficulty: hard
+    description: >
+      Customer requests a refund outside policy and also reports suspicious
+      account activity requiring escalation.
+
+metadata:
+  author: "Yash Bharambe"
+  license: "MIT"
+  tags:
+    - openenv
+    - customer-support
+    - ai-agents
+    - reinforcement-learning
+    - ticket-triage
