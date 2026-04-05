@@ -1,0 +1,22 @@
+{
+  "task_id": "support_easy_001",
+  "difficulty": "easy",
+  "description": "Customer was charged twice for a subscription and wants a refund.",
+  "ticket": {
+    "ticket_id": "TICK-1001",
+    "customer_message": "I was charged twice for my subscription. Please refund the extra amount.",
+    "customer_tier": "standard",
+    "product_area": "subscription",
+    "conversation_history": []
+  },
+  "ground_truth": {
+    "category": "billing",
+    "priority": "medium",
+    "team": "billing_team",
+    "escalation_required": false,
+    "more_info_required": false,
+    "resolution_allowed": true,
+    "required_response_keywords": ["refund", "charge"],
+    "prohibited_response_keywords": ["security breach", "fraud"]
+  }
+}
