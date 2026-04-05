@@ -1,0 +1,22 @@
+{
+    "task_id": "support_hard_001",
+    "difficulty": "hard",
+    "description": "Customer requests refund outside policy and also reports suspicious account activity.",
+    "ticket": {
+      "ticket_id": "TICK-3001",
+      "customer_message": "I want a refund for last month's subscription even though I already used it, and I also noticed unfamiliar login activity on my account.",
+      "customer_tier": "premium",
+      "product_area": "account_and_billing",
+      "conversation_history": []
+    },
+    "ground_truth": {
+      "category": "account_access",
+      "priority": "urgent",
+      "team": "escalation_manager",
+      "escalation_required": true,
+      "more_info_required": false,
+      "resolution_allowed": false,
+      "required_response_keywords": ["security", "review", "account"],
+      "prohibited_response_keywords": ["guaranteed refund", "issue resolved"]
+    }
+  }
