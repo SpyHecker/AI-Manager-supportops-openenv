@@ -1,0 +1,22 @@
+{
+    "task_id": "support_medium_001",
+    "difficulty": "medium",
+    "description": "Customer cannot receive OTP and needs urgent account access before travel.",
+    "ticket": {
+      "ticket_id": "TICK-2001",
+      "customer_message": "I'm not receiving the OTP code to log in. I have a flight tonight and need urgent access to my account.",
+      "customer_tier": "premium",
+      "product_area": "authentication",
+      "conversation_history": []
+    },
+    "ground_truth": {
+      "category": "account_access",
+      "priority": "high",
+      "team": "account_recovery",
+      "escalation_required": false,
+      "more_info_required": true,
+      "resolution_allowed": false,
+      "required_response_keywords": ["verify", "details", "account"],
+      "prohibited_response_keywords": ["resolved", "closed"]
+    }
+  }
