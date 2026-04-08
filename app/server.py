@@ -49,7 +49,7 @@ def tasks() -> Dict[str, Any]:
 
 
 @app.post("/reset")
-def reset(request: ResetRequest) -> Dict[str, Any]:
+def reset(request: ResetRequest = ResetRequest()) -> Dict[str, Any]:
     try:
         print("START")  # REQUIRED LOG
 
