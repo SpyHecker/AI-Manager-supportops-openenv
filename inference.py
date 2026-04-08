@@ -104,10 +104,19 @@ def log_end(success: bool, steps: int, score: float, rewards: List[float]) -> No
     )
 
 
+TASK_IDS = {
+    "easy": "support_easy_001",
+    "medium": "support_medium_001",
+    "hard": "support_hard_001",
+}
+
 def reset_env(task_name: str) -> Dict[str, Any]:
     response = requests.post(
         f"{ENV_BASE_URL}/reset",
-        json={"difficulty": task_name},
+        json={
+            "difficulty": task_name,
+            "task_id": TASK_IDS.get(task_name, "support_easy_001")
+        },
         timeout=30,
     )
     response.raise_for_status()
@@ -117,7 +126,7 @@ def reset_env(task_name: str) -> Dict[str, Any]:
 def step_env(action: Dict[str, Any]) -> Dict[str, Any]:
     response = requests.post(
         f"{ENV_BASE_URL}/step",
-        json=action,
+        json={"action": action},  
         timeout=30,
     )
     response.raise_for_status()
